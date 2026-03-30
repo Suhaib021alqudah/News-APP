@@ -5,12 +5,12 @@ import 'package:api/core/network/api_helper.dart';
 import 'package:api/features/home/models/top_head_lines_model.dart';
 import 'package:dio/dio.dart';
 
-class HomeScreenServices {
-  Future<GenralArticlsModels?> getTopHeadLines() async {
+class ResultServices {
+  Future<GenralArticlsModels?> searchItemByName(String query) async {
     try {
       final Response response = await ApiHelper.getRequest(
-        endPoint: ApiEndpoints.topHeadlinesEndpoints,
-        query: {'apiKey': AppConstant.apiKey, 'country': 'us'},
+        endPoint: ApiEndpoints.searchEndPoint,
+        query: {'apiKey': AppConstant.apiKey, 'q': query},
       );
 
       if (response.statusCode == 200) {

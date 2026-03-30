@@ -5,6 +5,7 @@
   "business": "Business",
   "entertainment": "Entertainment",
   "cancel": "Cancel",
-  "search_result": "Search result",
-  "no_results": "No results"
+  "search_results": "Search results",
+  "no_results": "No results",
+  "Search": "Search"
 }

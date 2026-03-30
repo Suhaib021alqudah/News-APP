@@ -37,6 +37,7 @@ class APIAPP extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           routerConfig: RouterGen.goRouter,
+          debugShowCheckedModeBanner: false,
         );
       },
     );

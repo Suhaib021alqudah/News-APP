@@ -1,8 +1,8 @@
 import 'package:api/core/routing/app_routes.dart';
+import 'package:api/features/details/details_screen.dart';
+import 'package:api/features/home/models/top_head_lines_model.dart';
 import 'package:api/features/home/view/home_page.dart';
-import 'package:api/features/news_page.dart';
-import 'package:api/features/result_page.dart';
-import 'package:api/features/search_page.dart';
+import 'package:api/features/result/screen/result_page.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGen {
@@ -19,17 +19,28 @@ class RouterGen {
       GoRoute(
         path: AppRoutes.newsPage,
         name: AppRoutes.newsPage,
-        builder: (context, state) => const NewsPage(),
+        builder: (context, state) {
+          Article article = state.extra as Article;
+          return DetailsScreen(article: article);
+        },
       ),
-      GoRoute(
-        path: AppRoutes.searchPage,
-        name: AppRoutes.searchPage,
-        builder: (context, state) => const SearchPage(),
-      ),
+
       GoRoute(
         path: AppRoutes.resultPage,
         name: AppRoutes.resultPage,
-        builder: (context, state) => const ResultPage(),
+        builder: (context, state) {
+          final String query = (state.extra as String?) ?? 'Defualt Serach';
+          return ResultPage(query: query);
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.detailsScreen,
+        name: AppRoutes.detailsScreen,
+        builder: (context, state) {
+          Article article = state.extra as Article;
+          return DetailsScreen(article: article);
+        },
       ),
     ],
   );
