@@ -75,7 +75,7 @@ flutter run
 
 ### 🏠 Home Page
 
-![Home](HomeScreen.png)
+![Home](/HomeScreen.png)
 
 
 ## 📝 Important Notes
