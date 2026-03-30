@@ -10,7 +10,11 @@ class ResultServices {
     try {
       final Response response = await ApiHelper.getRequest(
         endPoint: ApiEndpoints.searchEndPoint,
-        query: {'apiKey': AppConstant.apiKey, 'q': query},
+        query: {
+          'apiKey': AppConstant.apiKey,
+          'q': query,
+          'language': AppConstant.languageCode,
+        },
       );
 
       if (response.statusCode == 200) {

@@ -22,10 +22,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<String> categories = [
-    'Travel',
-    'Technology',
-    'Business',
-    'Entertainment',
+    'travel',
+    'technology',
+    'business',
+    'entertainment',
   ];
 
   late Future<GenralArticlsModels?> _newsFuture;
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 68.h,
         backgroundColor: AppColor.secondryColor,
         title: Text(
-          'Explore'.tr(),
+          'explore'.tr(),
           style: GoogleFonts.inter(
             color: AppColor.primaryColor,
             fontWeight: FontWeight.bold,
@@ -54,10 +54,11 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              if (context.locale.languageCode == 'en')
+              if (context.locale.languageCode == 'en') {
                 context.setLocale(const Locale('ar'));
-              else
+              } else {
                 context.setLocale(const Locale('en'));
+              }
             },
             icon: const Icon(Icons.language),
           ),
@@ -72,12 +73,15 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(color: AppColor.secondryColor),
             );
           }
-          if (snapshot.hasError)
+          if (snapshot.hasError) {
             return Center(child: Text(snapshot.error.toString()));
+          }
 
           if (snapshot.hasData && snapshot.data != null) {
             final articles = snapshot.data!.articles ?? [];
-            if (articles.isEmpty) return Center(child: Text('No Result'.tr()));
+            if (articles.isEmpty) {
+              return Center(child: Text('no_results'.tr()));
+            }
 
             return Column(
               children: [
@@ -96,6 +100,7 @@ class _HomePageState extends State<HomePage> {
                               'yyyy-MM-dd - kk:mm',
                             ).format(article.publishedAt!)
                           : '';
+
                       if (index == 0) {
                         return Column(
                           children: [
@@ -103,7 +108,6 @@ class _HomePageState extends State<HomePage> {
                               imageUrl:
                                   article.urlToImage ??
                                   'https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/error-icon.png',
-
                               authorName: article.author ?? '',
                               date: dateFormatted,
                               title: article.title ?? '',
@@ -141,10 +145,9 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index) => CatogeryWidget(
             title: categories[index].tr(),
             onTap: () {
-              GoRouter.of(context).pushReplacement(
-                AppRoutes.resultPage,
-                extra: categories[index].tr(),
-              );
+              GoRouter.of(
+                context,
+              ).pushReplacement(AppRoutes.resultPage, extra: categories[index]);
             },
           ),
         ),

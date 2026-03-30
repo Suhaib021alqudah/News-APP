@@ -38,7 +38,7 @@ class ArticleWidget extends StatelessWidget {
                 SizedBox(
                   width: 200.w,
                   child: Text(
-                    '$article.author . $article.publishedAt',
+                    '${article.author ?? "Unknown"} . ${article.publishedAt ?? ""}',
                     style: AppFont.homePagedescText,
                   ),
                 ),
@@ -48,7 +48,9 @@ class ArticleWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
               child: CachedNetworkImage(
-                imageUrl: article.urlToImage ?? '',
+                imageUrl:
+                    article.urlToImage ??
+                    'https://media.istockphoto.com/id/827247322/vector/danger-sign-vector-icon-attention-caution-illustration-business-concept-simple-flat-pictogram.jpg?s=612x612&w=0&k=20&c=BvyScQEVAM94DrdKVybDKc_s0FBxgYbu-Iv6u7yddbs=',
                 width: 112.w,
                 height: 80.h,
               ),

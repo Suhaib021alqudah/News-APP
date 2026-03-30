@@ -1,4 +1,5 @@
 import 'package:api/core/constant/app_color.dart';
+import 'package:api/core/constant/constant.dart';
 import 'package:api/core/routing/app_routes.dart';
 import 'package:api/features/home/models/top_head_lines_model.dart';
 import 'package:api/features/home/widget/articel_widegt.dart';
@@ -25,6 +26,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   void initState() {
     super.initState();
+
     _resultFuture = ResultServices().searchItemByName(widget.query);
   }
 
@@ -36,7 +38,7 @@ class _ResultPageState extends State<ResultPage> {
         toolbarHeight: 68.h,
         backgroundColor: AppColor.secondryColor,
         title: Text(
-          'Search results'.tr(),
+          'search_results'.tr(),
           style: GoogleFonts.inter(
             color: AppColor.primaryColor,
             fontWeight: FontWeight.bold,
@@ -53,6 +55,21 @@ class _ResultPageState extends State<ResultPage> {
           IconButton(
             onPressed: () => context.pushNamed(AppRoutes.searchPage),
             icon: Icon(Icons.search, color: AppColor.primaryColor),
+          ),
+          IconButton(
+            onPressed: () async {
+              if (context.locale.languageCode == 'en') {
+                await context.setLocale(const Locale('ar'));
+                AppConstant.languageCode = 'ar';
+              } else {
+                await context.setLocale(const Locale('en'));
+                AppConstant.languageCode = 'en';
+              }
+              setState(() {
+                _resultFuture = ResultServices().searchItemByName(widget.query);
+              });
+            },
+            icon: const Icon(Icons.language),
           ),
         ],
       ),
@@ -73,7 +90,7 @@ class _ResultPageState extends State<ResultPage> {
             final articles = snapshot.data!.articles ?? [];
 
             if (articles.isEmpty) {
-              return Center(child: Text('No Result'.tr()));
+              return Center(child: Text('no_results'.tr()));
             }
 
             return Column(
@@ -91,19 +108,6 @@ class _ResultPageState extends State<ResultPage> {
                       final dateFormatted = publishedAt != null
                           ? DateFormat('yyyy-MM-dd - kk:mm').format(publishedAt)
                           : '';
-
-                      if (index == 0) {
-                        return const Column(
-                          children: [
-                            // HeadlineWidget(
-                            //   imageUrl: article.urlToImage ?? '',
-                            //   authorName: article.author ?? '',
-                            //   date: dateFormatted,
-                            //   title: article.title ?? '',
-                            // ),
-                          ],
-                        );
-                      }
 
                       return Padding(
                         padding: EdgeInsets.only(bottom: 15.h),
