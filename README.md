@@ -69,13 +69,11 @@ flutter run
 ```
 
 
-
 ## 📸 Screenshots
 
-
-### 🏠 Home Page
-
-![Home](/HomeScreen.png)
+| Home Screen | Details Screen | Search (AR) | Search (EN) |
+| :---: | :---: | :---: | :---: |
+| <img src="HomeScreen.png" width="180"> | <img src="Details.png" width="180"> | <img src="SearchResultAR.png" width="180"> | <img src="SearhResultEN.png" width="180"> |
 
 
 ## 📝 Important Notes
