@@ -68,11 +68,15 @@ class AppConstant {
 flutter run
 ```
 
+
+
 ## 📸 Screenshots
 
-| Home Page | Search Results | Article Details |
-| :---: | :---: | :---: |
-|  |  |  |
+
+### 🏠 Home Page
+
+![Home]()
+
 
 ## 📝 Important Notes
 
