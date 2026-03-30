@@ -75,8 +75,10 @@ flutter run
 
 ### 🏠 Home Page
 
-![Home](HomeScreen.png)
-
+![Home]HomeScreen.png)
+![Home](assets/1.png)
+![Product Card](assets/2.png)
+![Categories](assets/3.png)
 
 ## 📝 Important Notes
 
